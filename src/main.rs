@@ -1,4 +1,4 @@
-use rand::Rng
+use rand::Rng;
 
 // Game
 struct Game {
@@ -8,8 +8,9 @@ struct Game {
 }
 
 // Game board
-struct Board {
+struct GameBoard {
     size: (i32, i32),
+    players_positions: 
 }
 
 // Player
@@ -26,6 +27,7 @@ struct Player{
     position: (i32, i32),
     live_player_close: bool,
     player_detected: bool, 
+    board: GameBoard,
 
 }
 
