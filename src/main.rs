@@ -1,3 +1,6 @@
+use simulator::society::Society;
 fn main() {
-    print!("Pass")
+    let society = Society::new(10000);
+    print!("{:?}", society.citizens[30].id)
+
 }
