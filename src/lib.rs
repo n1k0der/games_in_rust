@@ -88,7 +88,7 @@ pub mod society {
 
             // Creating citizens
             let mut citizens: Vec<Citizen> = Vec::new();
-            for i in (0..citizens_number) {
+            for i in 0..citizens_number {
                 citizens.push(
                     Citizen::new(i as u64, 
                                rand::thread_rng().gen_range(-100..=-21), 
@@ -130,10 +130,42 @@ pub mod society {
 
             if (election_results[0] / total_votes) as f32 > 0.5 {
                 self.government = Government::Progressist;
+                return
             } else if  (election_results[1] / total_votes) as f32 > 0.5 {
                 self.government = Government::Liberal;
+                return
             } else if  (election_results[2] / total_votes) as f32 > 0.5 {
                 self.government = Government::Conservative;
+                return
+            }
+
+            if election_results[0] == election_results[1] &&
+                election_results[1] == election_results[2] &&
+                election_results[0] == election_results[2] {
+                    let mut random_elector = rand::thread_rng();
+                    let index_elected = random_elector.gen_range(0..3);
+                        if index_elected == 0 {
+                            self.government = Government::Progressist;
+                            return
+                        } else if index_elected == 1 {
+                            self.government = Government::Liberal;
+                            return
+                        } else if index_elected == 2 {
+                            self.government = Government::Conservative;
+                            return
+                        }
+            } else if election_results[0] == election_results[1] &&
+                      election_results[1] > election_results[2] {
+
+            } else if election_results[1] == election_results[2] &&
+                      election_results[1] > election_results[0] {
+                    let mut random_elector = rand::thread_rng();
+                    let index_elected = random_elector.gen_range(1..3);
+                    if index_elected == 1 {
+                        self.government = Government::Liberal;
+                    } else if index_elected == 2 {
+                        self.government = Government::Conservative;
+                    }
             }
 
             
